@@ -1,0 +1,265 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/*
+ * General styles and color variables
+ */
+
+:root {
+    color-scheme: light;
+    --bg: #f5f7fb;
+    --panel-bg: #ffffff;
+    --border: #d9e0ef;
+    --accent: #2e6be6;
+    --accent-light: #e0ebff;
+    --text: #1f2a44;
+    --muted: #5e6a85;
+    --success: #1f995d;
+    --radius: 0.75rem;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin: 0;
+    height: 100vh;
+    min-height: 0;
+    background: var(--bg);
+    color: var(--text);
+}
+
+#cb-body {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+button {
+    appearance: none;
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.45rem 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+    background: #214fb2;
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+button.secondary {
+    background: transparent;
+    color: var(--accent);
+}
+
+button:disabled {
+    background: var(--border);
+    border-color: var(--border);
+    color: var(--muted);
+    cursor: not-allowed;
+    transform: none;
+}
+
+/*
+ * Layout-specific styles
+ */
+
+.app-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem clamp(1.5rem, 4vw, 3rem);
+    background: var(--panel-bg);
+    border-bottom: 1px solid var(--border);
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.tagline {
+    margin: 0.25rem 0 0;
+    color: var(--muted);
+}
+
+.app-layout {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 0.5rem;
+    gap: 0.5rem;
+}
+
+.panel {
+    background: var(--panel-bg);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: 0 1rem 2rem rgba(16, 24, 40, 0.08);
+    padding: 1rem;
+    gap: 0.75rem;
+    min-height: 0;
+}
+
+
+.panel-header .hint,
+.panel-footer {
+    margin: 0;
+    color: var(--muted);
+}
+
+.actions-panel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-height: fit-content;
+}
+
+fieldset {
+    width: fit-content;
+    height: fit-content;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem 1rem;
+}
+
+legend {
+    margin: 0;
+    padding: 0 0.2rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--muted);
+}
+
+.button-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.button-grid button {
+    margin: 0;
+    font-size: 0.8rem;
+    height: 2rem;
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.sheet-panel {
+    display: flex;
+    flex-direction: column;
+    flex: 1 2 auto;
+    min-height: 0;
+    gap: 0.75rem;
+}
+
+.sheet-panel h2 {
+    margin-top: 0;
+    min-height: 0;
+    font-size: 1.15rem;
+    letter-spacing: 0.03em;
+    color: var(--muted);
+    text-transform: uppercase;
+}
+
+.sheet-panel .panel-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cell-editor {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+/*
+ * Spreadsheet table styles
+ */
+
+#spreadsheet-container {
+    border: 1px solid var(--border);
+    overflow: auto;
+    flex: 1 1 auto;
+    min-height: 0;
+    background: #fff;
+}
+
+#spreadsheet {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 640px;
+}
+
+#spreadsheet th,
+#spreadsheet td {
+    border: 1px solid var(--border);
+    padding: 0.25rem;
+    min-height: 1.4rem;
+    height: 1.4rem;
+    text-align: left;
+    line-height: 1.2rem;
+    font-size: 0.95rem;
+}
+
+.data-header td {
+    background: var(--bg);
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.group-header td {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.stats-row td {
+    background: #f8faff;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.grouped-by-col {
+    background: rgba(46, 107, 230, 0.08);
+    font-weight: 600;
+}
+
+#spreadsheet th {
+    background: var(--accent-light);
+    color: var(--accent);
+}
+
+#spreadsheet td.selected,
+#spreadsheet th.selected {
+    outline: 2px solid var(--accent);
+    background: rgba(46, 107, 230, 0.08);
+}
+
+.panel-footer {
+    font-size: 0.9rem;
+}

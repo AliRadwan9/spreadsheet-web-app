@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>IFT1015 Spreadsheet</title>
+    <link rel="stylesheet" href="static/codeboot.bundle.css">
+    <link rel="stylesheet" href="static/styles.css">
+    <script src="static/codeboot.bundle.js"></script>
+    <script type="text/python" src="interface.py"></script>
+</head>
+<body>
+    <div id="cb-body">
+        <header class="app-header" aria-label="Application Header">
+            <div>
+                <h1>IFT1015 - TP2 - Spreadsheet Studio</h1>
+            </div>
+        </header>
+        <main class="app-layout">
+            <section class="panel actions-panel" aria-label="Actions">
+                <fieldset>
+                    <legend>Fichiers</legend>
+                    <div class="button-grid">
+                        <button type="button" onclick="new_sheet_button_clicked()">Nouvelle table</button>
+                        <button type="button" onclick="save_sheet_button_clicked()">Sauvegarder table</button>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Édition</legend>
+                    <div class="button-grid">
+                        <button type="button" onclick="add_row_before_button_clicked()">Ajouter ligne avant</button>
+                        <button type="button" onclick="add_row_after_button_clicked()">Ajouter ligne après</button>
+                        <button type="button" onclick="delete_row_button_clicked()">Supprimer ligne</button>
+                        <button type="button" onclick="add_column_before_button_clicked()">Ajouter colonne avant</button>
+                        <button type="button" onclick="add_column_after_button_clicked()">Ajouter colonne après</button>
+                        <button type="button" onclick="delete_column_button_clicked()">Supprimer colonne</button>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Calculs</legend>
+                    <div class="button-grid">
+                        <button type="button" onclick="sum_button_clicked()">Somme</button>
+                        <button id="clear-stats-button" type="button" onclick="clear_stats_button_clicked()">Effacer statistiques</button>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Analyse</legend>
+                    <div class="button-grid">
+                        <button type="button" onclick="group_by_button_clicked()">Grouper par</button>
+                    </div>
+                </fieldset>
+            </section>
+
+            <section class="panel sheet-panel">
+                <div class="panel-header">
+                    <p class="hint">Cliquez sur une cellule pour commencer, ou déposer un fichier CSV.</p>
+                    <text id="file-name">Aucun fichier chargé</text>
+                    <div class="cell-editor">
+                        <text>Cellule sélectionnée : </text>
+                        <text id="selected-cell">(X, X)</text>
+                        <input type="text" id="cell-editor" onkeypress="cell_editor_pressed(event)" aria-label="Cell Editor"/>
+                    </div>
+                </div>
+                <div id="spreadsheet-container">
+                    <table id="spreadsheet" aria-label="Spreadsheet">
+                        <!-- Filled dynamically by interface.py -->
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
